@@ -1,0 +1,55 @@
+#image_list {
+	display: none;
+}
+
+.loading {
+	xdisplay: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 10000;
+	font-size: 48px;
+	color: #FFFFFF;
+}
+
+#canvas{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background-color: #CCCCCC;
+	height: 100%;
+	overflow: hidden;
+	z-index:-1;
+}
+div.image_container {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	xbackground-color: #000;
+}
+
+div.image_container  img {
+	position: absolute;
+}
+
+img.image_init {
+	position: absolute;
+	xleft: 100%;
+}
+#status {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: black;
+	color: white;
+}
+#console {
+	position: absolute;
+	left: 0;
+	top: 40;
+	background-color: black;
+	color: white;
+}
