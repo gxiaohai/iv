@@ -36,7 +36,7 @@ function slider(_index) {
 		nextContainer.data('left', $(window).width());
 		nextContainer.css('left', $(window).width()).appendTo(canvas);
 		
-		/*$(document).click(function(e){
+		$(document).click(function(e){
 			var left;
 			if (e.pageX < $(window).width() / 2) {
 				left = false;
@@ -44,7 +44,7 @@ function slider(_index) {
 				left = true;
 			}
 			slide(left);
-		});*/
+		});
 		
 		$(document).drag(function(ev, dd) {
 			canvas.find("div.image_container").each(function(index) {
@@ -126,14 +126,14 @@ function slider(_index) {
 			if (left) {
 				$(this).stop().show().animate(
 					{left : $(this).data('left') - browserwidth }, 
-					{duration: 'slow', 
-					 easing: 'easeOutBack', 
+					{duration: 'fast', 
+					 //easing: 'easeOutBack', 
 					 complete: function() {					
 						var leftPosition = $(this).data('left');
 						$(this).data('left', leftPosition-browserwidth);
 					}});
 			} else {
-				$(this).stop().show().animate({left : ($(this).data('left') + browserwidth) }, 500, function() {
+				$(this).stop().show().animate({left : ($(this).data('left') + browserwidth) }, "fast", function() {
 					var leftPosition = $(this).data('left');
 					$(this).data('left', leftPosition+browserwidth);
 				});
@@ -142,13 +142,11 @@ function slider(_index) {
 		
 		if (left) {
 			index = canvas.find("div:nth-child(2)").attr('id');
-			//alert(index);
 			var rightContainer = loadContainer(nextIndex());
 			rightContainer.data('left', $(window).width());
 			rightContainer.css('left', browserwidth).appendTo(canvas);
 		} else {
 			index = canvas.find("div:nth-child(1)").attr('id');
-			//alert(index);
 			var leftContainer = loadContainer(preIndex());
 			leftContainer.data('left', -$(window).width());
 			leftContainer.css('left', -browserwidth).prependTo(canvas);
@@ -174,12 +172,17 @@ function slider(_index) {
 	}
 	
 	function loading(container) {
-		var loading = $("<div class='loading'>Loading...</div>");
+		var img = $("<img src='images/loading.gif'/>");
+		img.load(function(){
+			$(this).css('left', -this.width/2).css('top', -this.height/2)
+		});
+		var loading = $("<div class='loading'></div>");
+		img.appendTo(loading);
 		loading.appendTo(container);
 	}
 	
 	function finishLoad(container) {
-		container.find("div").remove();
+		container.find("div.loading").remove();
 	}
 	
 	function loadImage(index) {
